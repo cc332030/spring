@@ -1,0 +1,35 @@
+
+= Dependency Injection 依赖注入
+
+== 属性注入
+类型注入
+
+[source, text]
+----
+@Autowired
+private RestTemplate restTemplate;
+----
+
+== 构造方法注入
+类型注入
+
+[source, text]
+----
+@Autowired
+public C(RestTemplate restTemplate) {
+  ...
+}
+----
+
+== 方法注入
+类型注入
+
+当覆盖父类方法时且参数为父类方法的子类时，注入会失败（扫描到的是父类接口的类型）
+
+[source, text]
+----
+@Autowired
+public void setRestTemplate(RestTemplate restTemplate) {
+  ...
+}
+----

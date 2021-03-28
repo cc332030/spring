@@ -1,0 +1,46 @@
+
+= RestTemplate
+
+== 各个线程池实现
+
+- URLConnection SimpleClientHttpRequestFactory
+- HttpClient    HttpComponentsClientHttpRequestFactory
+- OKHttp        OkHttp3ClientHttpRequestFactory
+
+== new
+[source,java]
+----
+class Test {
+
+    public static final HttpComponentsClientHttpRequestFactory REQUEST_FACTORY =
+        new HttpComponentsClientHttpRequestFactory();
+
+    public static final RestTemplate REST_TEMPLATE;
+    static {
+
+        REQUEST_FACTORY.setConnectTimeout(DEFAULT_TIMEOUT);
+        REQUEST_FACTORY.setReadTimeout(DEFAULT_TIMEOUT);
+
+        REST_TEMPLATE = new RestTemplate(REQUEST_FACTORY);
+    }
+}
+----
+
+== form 提交
+
+[source,java]
+----
+class Test {
+    public static void main() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+        map.add("c332030", "c332030@gmail.com");
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+        ResponseEntity<String> response = restTemplate.postForEntity( url, request , String.class);
+    }
+}
+----

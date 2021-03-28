@@ -1,0 +1,20 @@
+
+= 事务
+
+== 多个操作使用同一个连接
+
+[source,java]
+----
+class test{
+    public static void main(String[] args){
+
+        // org.springframework.transaction.support.TransactionSynchronizationManager
+        TransactionSynchronizationManager.initSynchronization();
+
+        // do something
+        TransactionSynchronizationManager.clearSynchronization();
+
+        org.mybatis.spring.SqlSessionUtils.getSqlSession();
+    }
+}
+----

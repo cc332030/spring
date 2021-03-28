@@ -1,0 +1,4 @@
+
+= spring aop
+
+cglib 必须有默认构造方法
