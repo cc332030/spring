@@ -1,0 +1,67 @@
+
+= spring 组件
+:toc: right
+
+image::image-2022-04-10-10-12-55-595.png[]
+
+== Spring Core
+
+核心模块， Spring 其他所有的功能基本都需要依赖于该类库，主要提供 IoC 依赖注入功能的支持。
+
+== Spring Aspects
+
+该模块为与 AspectJ 的集成提供支持。
+
+== Spring AOP
+
+提供了面向切面的编程实现。
+
+== Spring Data Access/Integration ：
+
+Spring Data Access/Integration 由 5 个模块组成：
+
+=== spring-jdbc
+
+提供了对数据库访问的抽象 JDBC。不同的数据库都有自己独立的 API 用于操作数据库，而 Java 程序只需要和 JDBC API 交互，这样就屏蔽了数据库的影响。
+
+=== spring-tx
+
+提供对事务的支持。
+
+=== spring-orm :
+
+提供对 Hibernate 等 ORM 框架的支持。
+
+=== spring-oxm
+
+提供对 Castor 等 OXM 框架的支持。
+
+=== spring-jms
+
+Java 消息服务。
+
+== Spring Web
+
+Spring Web 由 4 个模块组成：
+
+=== spring-web
+
+对 Web 功能的实现提供一些最基础的支持。
+
+=== spring-webmvc
+
+提供对 Spring MVC 的实现。
+
+=== spring-websocket
+
+提供了对 WebSocket 的支持，WebSocket 可以让客户端和服务端进行双向通信。
+
+=== spring-webflux
+
+提供对 WebFlux 的支持。WebFlux 是 Spring Framework 5.0 中引入的新的响应式框架。与 Spring MVC 不同，它不需要 Servlet API，是完全异步.
+
+== Spring Test
+
+Spring 团队提倡测试驱动开发（TDD）。有了控制反转 (IoC)的帮助，单元测试和集成测试变得更简单。
+
+Spring 的测试模块对 JUnit（单元测试框架）、TestNG（类似 JUnit）、Mockito（主要用来 Mock 对象）、PowerMock（解决 Mockito 的问题比如无法模拟 final, static， private 方法）等等常用的测试框架支持的都比较好。
