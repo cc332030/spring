@@ -1,0 +1,38 @@
+
+= 自动装配 AutoConfiguration
+
+`SPI` 全称为 `Service Provider Interface`，是一种服务发现机制。 SPI 的本质是将接口实现类的全限定名配置在文件中，并由服务加载器读取配置文件，加载实现类。
+
+需要启用 @EnableAutoConfiguration
+
+spring.factories 的作用是加载不在组件扫描范围内的类
+
+[source, java]
+----
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+@AutoConfigurationPackage //作用：将main包下的所欲组件注册到容器中
+@Import({AutoConfigurationImportSelector.class}) //加载自动装配类 xxxAutoconfiguration
+public @interface EnableAutoConfiguration {
+
+    String ENABLED_OVERRIDE_PROPERTY = "spring.boot.enableautoconfiguration";
+
+    Class<?>[] exclude() default {};
+
+    String[] excludeName() default {};
+}
+----
+
+AutoConfigurationImportSelector 类实现了 ImportSelector接口，也就实现了这个接口中的 selectImports 方法，该方法主要用于获取所有符合条件的类的全限定类名，这些类需要被加载到 IoC 容器中。
+
+== 流程
+
+. 判断自动装配开关是否打开。默认spring.boot.enableautoconfiguration=true，可在 application.properties 或 application.yml 中设置
+
+. 用于获取EnableAutoConfiguration注解中的 exclude 和 excludeName
+
+. 获取需要自动装配的所有配置类，读取META-INF/spring.factories
+
+. 通过 @ConditionalOnXXX 筛选
